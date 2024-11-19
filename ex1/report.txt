@@ -1,0 +1,15 @@
+For testing insertions ive decided to test the following:
+* Inserting elements in an increasing order & checking if the elements are inserted in the correct order
+* Inserting elements in a decresing order & checking if the elements are inserted in the correct order/maintaining sorted invariant
+* Inserting two duplicate elements to check that it only inserts one element and discards the other one
+
+For testing member functions ive decided to test the following:
+* Testing that it returns true for all elements that are in the list
+* Testing that it returns false for all elements that are not in the list
+* Testing that it returns false for an empty Set
+
+For testing the intersect function ive decided to test the following:
+* Testing that it returns the correct Set after intersecting two sets
+* Testing that it returns the same Set if the two sets are the same
+* Testing that it returns the same Set if the set were intersecting with is empty
+

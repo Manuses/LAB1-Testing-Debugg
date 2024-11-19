@@ -1,0 +1,10 @@
+# IntelliJ IDEA specific files
+.idea/
+*.iml
+
+# Build output directories
+out/
+build/
+
+*.class
+*.log

@@ -1,0 +1,10 @@
+Inside Dates.main we have the following local variables
+* int someMonth
+* int someDay
+* int laterMonth
+* int laterDay
+* int someDayInYear
+* int laterDayInYear
+* int aMonth
+
+Inside Dates we also have the method daysInMonth, starts at line 13
