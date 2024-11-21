@@ -1,0 +1,36 @@
+1.
+
+Input Space: nemployee >= 0, starttime >= 0, endtime >= 0 (nemploye, starttime, endtime in 0, ... , max_int)
+
+Block #1: starttime > endtime (expected: readSchedule = postReadSchedule)
+
+Block #2 endtime <= starttime, nemployee > len(workingEmployees)
+        (endtime = 4, starttime = 3, nemployee = 2, len(workingEmployees) = 0) expected: readSchedule is unchanged, requiredNumber(3, 4) = 1
+Block #3
+        endtime <= starttime, nemployee < len(workingEmployees)
+        (endtime = 4, starttime = 3, nemployee = 2, len(workingEmployees = 1))
+
+Border Cases:
+
+starttime = endtime
+workingemployes = full
+nemployes = full
+nemployes = 0
+
+
+
+next Incomplete: currentttime >= 0, currenttime < size (currenttime in 0, ..., max_int), currenttime in (min_int, ... , size)
+
+Block #1 (currenttime >= 0, size > currenttime, workingemployees = requiredNumber for all hours)
+        currentttime = 1, size = 3, workingemployees = 1, requiredNumber = 1
+        expected: -1
+
+Block #2 (currenttime >= 0, size > currenttime, workingemployees (0) = requiredNumber, workingemployees(1, 2) < requiredNumber
+
+        expected: 1
+
+Border case:
+    currenttime min, size ct+1
+    currenttime min, size max
+    currenttime max-1, size max
+    currenttime
