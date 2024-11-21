@@ -49,6 +49,10 @@ public static void main (String[] args) {
                        laterMonth + "/" + laterDay + " is: ");
     daysBetween = laterDayInYear - someDayInYear;
     daysBetween = daysBetween + laterDay - someDay;
+    if (daysBetween < 0) {
+      daysBetween = 365 + daysBetween;
+    }
+    
     System.out.println(daysBetween);
 }
 }
