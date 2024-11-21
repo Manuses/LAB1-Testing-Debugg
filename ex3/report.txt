@@ -6,5 +6,6 @@ Inside Dates.main we have the following local variables
 * int someDayInYear
 * int laterDayInYear
 * int aMonth
+* int daysBetween
 
 Inside Dates we also have the method daysInMonth, starts at line 13
