@@ -14,7 +14,8 @@ public class SetTest {
     }
 
     @Test
-    void test_insert_inOrder(){
+    void test_insert_inOrder()
+    {
         set.insert(1);
         set.insert(2);
         set.insert(3);
@@ -24,6 +25,7 @@ public class SetTest {
         assertEquals(setarray[1], 2);
         assertEquals(setarray[2], 3);
     }
+
     @Test
     void test_insert_notInOrder()
     {
@@ -36,6 +38,7 @@ public class SetTest {
         assertEquals(setarray[1], 2);
         assertEquals(setarray[2], 3);
     }
+
     @Test
     void test_insert_noDuplicates()
     {

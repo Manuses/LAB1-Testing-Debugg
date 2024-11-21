@@ -1,4 +1,4 @@
-Inside Dates.main we have the following local variables
+inside Dates.main we have the following local variables
 * int someMonth
 * int someDay
 * int laterMonth
@@ -6,5 +6,14 @@ Inside Dates.main we have the following local variables
 * int someDayInYear
 * int laterDayInYear
 * int aMonth
+* int daysBetween
 
-Inside Dates we also have the method daysInMonth, starts at line 13
+3.3
+Inside Dates we also have the method daysInMonth, starts at line 13.
+
+3.4
+Bug, funktion daysInMonth:
+    Returnerar inte rätt dagar. Returnerar 28 för februari, 30 för april.
+    aMonth återställs inte för laterDayInYear's loop (line 39)
+3.5
+Se ex3.
