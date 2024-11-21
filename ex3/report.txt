@@ -7,4 +7,12 @@ Inside Dates.main we have the following local variables
 * int laterDayInYear
 * int aMonth
 
-Inside Dates we also have the method daysInMonth, starts at line 13
+3.3
+Inside Dates we also have the method daysInMonth, starts at line 13.
+
+3.4
+
+
+3.5
+Se ex3.
+
