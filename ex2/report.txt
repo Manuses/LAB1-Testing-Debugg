@@ -2,13 +2,18 @@
 
 Input Space: nemployee >= 0, starttime >= 0, endtime >= 0 (nemploye, starttime, endtime in 0, ... , max_int)
 
-Block #1: starttime > endtime (expected: readSchedule = postReadSchedule)
+Block #1: starttime > endtime
+          test_Schedule_StartTimeGreaterThanEndTime: input: "starttime = 8, endtime = 2, nemploye = 1", expected: readSchedule = postReadSchedule
 
-Block #2 endtime <= starttime, nemployee > len(workingEmployees)
-        (endtime = 4, starttime = 3, nemployee = 2, len(workingEmployees) = 0) expected: readSchedule is unchanged, requiredNumber(3, 4) = 1
+Block #2 endtime >= starttime, nemployee > len(workingEmployees)
+        (endtime = 9, starttime = 0, nemployee = 3, len(workingEmployees) = 2)
+        test_Schedule_nemployeGreaterThanWorkers: input: "starttime = 0, endtime = 9, nemploye = 3", expected: len(workingEmployees) = 2, requiredNumber(0, 9) = 3
+
+        (Ändrade requiredNumber från 1 till 2, eftersom setNewRequired ska ändra till input arg eller?? kan tolka fel)
 Block #3
-        endtime <= starttime, nemployee < len(workingEmployees)
-        (endtime = 4, starttime = 3, nemployee = 2, len(workingEmployees = 1))
+        endtime >= starttime, nemployee < len(workingEmployees)
+        (endtime = 9, starttime = 0, nemployee = 1, len(workingEmployees) = 2)
+        test_Schedule_DiscardingWorkers: input: "starttime = 0, endtime = 9, nemploye = 1", expected: len(workingEmployees) = 1, requiredNumber(0, 9) = 1
 
 Border Cases:
 
@@ -17,21 +22,56 @@ workingemployes = full
 nemployes = full
 nemployes = 0
 
+Explanation of the tests:
+    * Block #1: Tests if the function returns the same schedule if the starttime is greater than the endtime
+    * Block #2: Tests if the function adds the correct number of required employees to the schedule if the value of nemployee is greater than the number of employees already in the schedule
+    * Block #3: Tests if the function removes the correct number of employees from the schedule if the number of employees is less than the number of employees already in the schedule
+
+Found Bugs:
+    * Block #3 (endtime >= starttime, nemployee < len(workingEmployees))
+        * len(workingEmployees, expected: 1, got: 0
 
 
-next Incomplete: currentttime >= 0, currenttime < size (currenttime in 0, ..., max_int), currenttime in (min_int, ... , size - 1)
+2.
+next Incomplete: currentttime >= 0, currenttime < size (size in 0, ..., max_int), currenttime in (min_int, ... , size)
 
-Block #1 (currenttime >= 0, size > currenttime, workingemployees (0) = requiredNumber, workingemployees(1, 2) < requiredNumber) #testar den första
-currenttime = 4, size = 7
+Block #1 (currenttime >= 0, size > currenttime, workingemployees(0) < requiredNumber, workingemployees(1...n) <= requiredNumber)
+        (currentttime = 1, size = 3, workingemployees(0) = 1, workingemployees( 1... n) = 3, requiredNumber = 5)
+         #newTest: input: "currenttime = 1", expected: 0
 
-Block #2  (currenttime >= 0, size > currenttime, workingemployees (n) < requiredNumber, workingemployees(0 ... n) = requiredNumber) #testar den sista'
- currenttime = 4, size = 7
+Block #2 (currenttime >= 0, size > currenttime, workingemployees at (0, 1) = requiredNumber, workingemployees(2, 3) < requiredNumber
+         #test_Schedule_middleHour: input: "0", expected: 2 
+         #currenttime = 2, size = 5, workingemployees(0, 1) = 4, workingemployees(2, 3) = 2, requiredNumber = 4
 
-Block #3  (currenttime >= 0, size > currenttime, workingemployees (2) < requiredNumber, workingemployees(0, 1, 3, 4) < requiredNumber) #testar mitt i
-currenttime = 4, size = 7
+Block #3 (currenttime >= 0, size > currenttime, workingemployees at (0. 1) = requiredNumber, workingemployees(2) < requiredNumber
+         #test_Schedule_lastHour: input: "0", expected: 2
+         #currenttime = 2, size = 5, workingemployees(0, 1) = 4, workingemployees(2) = 2, requiredNumber = 4
 
 Border case:
+    currenttime min, size ct+1
+        #currenttime = 0, size = 1, workingEmployees(0) = 1, requiredNumber = 2
+        #test1, expected = 0
+
     workingemployees full
+        #currenttime = 2, size = 4, workingEmployees(1..3) = 4, requiredNumber = 4
+        #test2, expected = -1
     workingemployees empty
-    currenttime = 0, size = 1
-    
+        #currenttime = 2, size = 4, workingemployees(0...4) = 0, requiredNumber = 2
+        #test3, expected = 0
+    requirednumber zero
+        #currenttime = 2, size = 4, workingemployees(0...3) = 0, requiredNumber = 0
+        #test4, expected = -1
+
+
+Explanation of the tests:
+        Block #1: Tests if the function correctly identifies the first element. 
+        Block #2: Tests if the function correctly identifies the last element
+        Block #3: Tests middle element. 
+        Border #1: Tests the lower edge case of currenttime and size
+        Border #2: Tests case when workingEmployees is full
+        Border #3: Tests when all times are empty (Likely overlap with Block #1)
+        Border #4: Tests lower edge case of requiredNumber.
+
+Explanation of the tests:
+    * Block #1: Tests if the function returns correctly (-1) if all hours are filled with the required number of employees
+    * Block #2: Tests if the function returns the hour that is not filled with the required number of employees
