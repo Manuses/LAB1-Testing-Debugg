@@ -19,15 +19,16 @@ nemployes = 0
 
 
 
-next Incomplete: currentttime >= 0, currenttime < size (currenttime in 0, ..., max_int), currenttime in (min_int, ... , size)
+next Incomplete: currentttime >= 0, currenttime < size (currenttime in 0, ..., max_int), currenttime in (min_int, ... , size - 1)
 
 Block #1 (currenttime >= 0, size > currenttime, workingemployees (0) = requiredNumber, workingemployees(1, 2) < requiredNumber) #testar den första
+currenttime = 4, size = 7
 
-Block #2  (currenttime >= 0, size > currenttime, workingemployees (n) < requiredNumber, workingemployees(0 ... n) = requiredNumber) #testar den sista
+Block #2  (currenttime >= 0, size > currenttime, workingemployees (n) < requiredNumber, workingemployees(0 ... n) = requiredNumber) #testar den sista'
+ currenttime = 4, size = 7
 
 Block #3  (currenttime >= 0, size > currenttime, workingemployees (2) < requiredNumber, workingemployees(0, 1, 3, 4) < requiredNumber) #testar mitt i
-
-        expected: 1
+currenttime = 4, size = 7
 
 Border case:
     workingemployees full
