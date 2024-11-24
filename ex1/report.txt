@@ -3,13 +3,34 @@ For testing insertions ive decided to test the following:
 * Inserting elements in a decresing order & checking if the elements are inserted in the correct order/maintaining sorted invariant
 * Inserting two duplicate elements to check that it only inserts one element and discards the other one
 
+Bugs found:
+* When inserting elements in a decreasing order, the elements were in the end ordered but it also had duplicates of the elements after the first one.
+* When inserting two duplicate elements, it inserted both elements instead of just one.
+
 For testing member functions ive decided to test the following:
 * Testing that it returns true for all elements that are in the list
 * Testing that it returns false for all elements that are not in the list
 * Testing that it returns false for an empty Set
+
+Bugs found:
+* No bugs found
 
 For testing the intersect function ive decided to test the following:
 * Testing that it returns the correct Set after intersecting two sets
 * Testing that it returns the same Set if the two sets are the same
 * Testing that it returns the same Set if the set were intersecting with is empty
 
+Bugs found:
+* If the intersecting set had less elements than the set it was intersecting with it would only remove s.length elements from the set instead of all elements that were in the intersecting set
+* i.e faulty for-loop in intersect function
+* If the set was intersecting with was empty it would return the set that was intersecting with instead of an empty set
+
+For testing the distinctClosed function, I've decided to test the following:
+* Testing that the function returns false when the operation is addition and the set contains elements that do not satisfy the distinct closed property.
+* Testing that the function returns false when the operation is subtraction and the set contains elements that do not satisfy the distinct closed property.
+* Testing that the function returns true when the set is empty, regardless of the operation.
+* Testing that the function returns true when the set contains a single element, regardless of the operation.
+* Testing that the function returns false when the operation is multiplication and the set contains elements that do not satisfy the distinct closed property.
+
+Bugs found:
+* No bugs found
