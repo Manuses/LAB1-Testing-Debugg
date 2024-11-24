@@ -20,10 +20,10 @@ public class SetTest {
         set.insert(2);
         set.insert(3);
         int[] setarray = set.toArray();
-        assertEquals(setarray.length, 3);
-        assertEquals(setarray[0], 1);
-        assertEquals(setarray[1], 2);
-        assertEquals(setarray[2], 3);
+        assertEquals(3, setarray.length);
+        assertEquals(1, setarray[0]);
+        assertEquals(2, setarray[1]);
+        assertEquals(3, setarray[2]);
     }
 
     @Test
@@ -33,10 +33,10 @@ public class SetTest {
         set.insert(2);
         set.insert(1);
         int[] setarray = set.toArray();
-        assertEquals(setarray.length, 3);
-        assertEquals(setarray[0], 1);
-        assertEquals(setarray[1], 2);
-        assertEquals(setarray[2], 3);
+        assertEquals(3, setarray.length);
+        assertEquals(1, setarray[0]);
+        assertEquals(2, setarray[1]);
+        assertEquals(3, setarray[2]);
     }
 
     @Test
@@ -45,7 +45,7 @@ public class SetTest {
         set.insert(1);
         set.insert(1);
         int[] setarray = set.toArray();
-        assertEquals(setarray.length, 1);
+        assertEquals(1, setarray.length);
     }
 
     @Test
@@ -84,9 +84,9 @@ public class SetTest {
         set2.insert(2);
         set.intersect(set2);
         int[] setarray = set.toArray();
-        assertEquals(setarray.length, 2);
-        assertEquals(setarray[0], 2);
-        assertEquals(setarray[1], 3);
+        assertEquals(2, setarray.length);
+        assertEquals(2, setarray[0]);
+        assertEquals(3, setarray[1]);
     }
     @Test
     void test_intersect_nothingToRemove()
@@ -99,10 +99,10 @@ public class SetTest {
         set2.insert(3);
         set.intersect(set2);
         int[] setarray = set.toArray();
-        assertEquals(setarray.length, 3);
-        assertEquals(setarray[0], 1);
-        assertEquals(setarray[1], 2);
-        assertEquals(setarray[2], 3);
+        assertEquals(3, setarray.length);
+        assertEquals(1, setarray[0]);
+        assertEquals(2, setarray[1]);
+        assertEquals(3, setarray[2]);
     }
     @Test
     void test_intersect_empty()
@@ -112,7 +112,7 @@ public class SetTest {
         set.insert(3);
         set.intersect(set2);
         int[] setarray = set.toArray();
-        assertEquals(setarray.length, 0);
+        assertEquals(0, setarray.length);
     }
     @Test
     void test_distinctClosed_false_addition()
