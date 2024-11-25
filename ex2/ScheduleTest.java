@@ -70,14 +70,57 @@ public class WorkScheduleTest {
         }
         assertEquals(-1, ws.nextIncomplete(0));
     }
+    
     @Test
     public void test_Schedule_hourNotFilled()
     {
         WorkSchedule work = new WorkSchedule(3);
         work.setRequiredNumber(1, 0, 2);
-        work.addWorkingPeriod("worker1", 0, 1);
+        work.addWorkingPeriod("worker1", 0, 2);
         assertEquals(2, work.nextIncomplete(0));
+    }
+    
+    @Test
+    public void test_Schedule_firstHour()
+    {
+        WorkSchedule work = new WorkSchedule(3);
+        work.setRequiredNumber(1, 0, 2);
+        work.addWorkingPeriod("worker1", 1, 2);
+        assertEquals(0, work.nextIncomplete(0));
+    }
+    
+    @Test
+    public void test_Schedule_middleHour()
+    {
+        WorkSchedule work = new WorkSchedule(5);
+        work.setRequiredNumber(1, 0, 2);
+        work.addWorkingPeriod("worker1", 0, 1);
+        work.addWorkingPeriod("worker2", 3, 4);
+        assertEquals(2, work.nextIncomplete(0));
+    }
+    
+    @Test
+    public void test_MinValues()
+    {
+        WorkSchedule work = new WorkSchedule(1);
+        work.setRequiredNumber(1, 0, 0);
+        assertEquals(0, work.nextIncomplete(0));
+    }
 
+    @Test
+    public void test_Schedule_workEmpty()
+    {
+        WorkSchedule work = new WorkSchedule(3);
+        work.setRequiredNumber(1, 0, 2);
+        assertEquals(0, work.nextIncomplete(0));
+    }
+
+    @Test
+    public void test_Schedule_noneRequired()
+    {
+        WorkSchedule work = new WorkSchedule(3);
+        work.setRequiredNumber(0, 0, 2);
+        assertEquals(-1, work.nextIncomplete(0));
     }
 
 }
