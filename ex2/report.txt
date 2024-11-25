@@ -29,25 +29,59 @@ Explanation of the tests:
 
 Found Bugs:
     * Block #3 (endtime >= starttime, nemployee < len(workingEmployees))
-        * len(workingEmployees, expected: 1, got: 0
+        * len(workingEmployees), expected: 1, got: 0
 
 
 2.
 next Incomplete: currentttime >= 0, currenttime < size (size in 0, ..., max_int), currenttime in (min_int, ... , size)
 
-Block #1 (currenttime >= 0, size > currenttime, workingemployees = requiredNumber for all hours)
-        (currentttime = 0, size = 3, workingemployees = 1, requiredNumber = 1)
-         test_Schedule_allHoursFilled: input: "currenttime = 0", expected: -1
+Block #1 (currenttime >= 0, size > currenttime, workingemployees(0) < requiredNumber, workingemployees(1...n) <= requiredNumber)
+        (currentttime = 1, size = 3, workingemployees(0) = 1, workingemployees( 1... n) = 3, requiredNumber = 5)
+         test_Schedule_firstHour: #input: "currenttime = 0, size = 3, workingemployees(1, 2) = 1, workingemployees(2) = 0, requiredNumber = 1", expected: 0
 
-Block #2 (currenttime >= 0, size > currenttime, workingemployees at (0) = requiredNumber, workingemployees(2) < requiredNumber
-         test_Schedule_hourNotFilled: input: "0", expected: 2
+Block #2 (currenttime >= 0, size > currenttime, workingemployees at (0, 1) = requiredNumber, workingemployees(2, 3) < requiredNumber ##size has to be large enough for there to be a defined middle.
+                                                                                                                                            #Testing with size = 5, so starttime is not equal to endtime.
+         test_Schedule_middleHour: input: "", currenttime = 0, size = 5, requiredNumber = 1, len(workingemployees(0, 1, 3, 4)) = 1, expected: 2
+
+Block #3 (currenttime >= 0, size > currenttime, workingemployees at (0. 1) = requiredNumber, workingemployees(2) < requiredNumber
+         test_Schedule_hourNotFilled() #input: "currenttime = 0, size = 3, workingemployees(0, 1) = 1, workingemployees(2) = 0, requiredNumber = 1", expected: 2
 
 Border case:
     currenttime min, size ct+1
-    currenttime min, size max
-    currenttime max-1, size max
-    currenttime
+        #currenttime = 0, size = 1, workingEmployees(0) = 0, requiredNumber = 1
+        test_minValues() #Expected : 0
+
+    currenttime high, size ct+1
+       #
+        test_Schedule_StartTimeEqualsEndTime() #Expected : x
+
+    workingEmployees full
+        #currenttime = 0, size = 3, workingEmployees(0 ... 9) = 1, requiredNumber = 1
+        #test_Schedule_allHoursFilled, expected = -1
+
+    workingemployees empty
+        #currenttime = 0, size = 3, workingemployees(0...2) = 0, requiredNumber = 1
+        test_Schedule_workEmpty() #expected = 0
+
+    requirednumber zero
+        #currenttime = 0, size = 3, workingemployees(0...2) = 0, requiredNumber = 0
+        test_Schedule_noneRequired # expected = -1
+
+
+Explanation of the tests:
+        Block #1: Tests if the function correctly identifies the first element.
+        Block #2: Tests if the function correctly identifies the last element
+        Block #3: Tests middle element.
+        Border #1: Tests the lower edge case of currenttime and size
+        Border #2: Tests nextIncomplete with the last time slot.
+        Border #3: Tests case when workingEmployees is full
+        Border #4: Tests when all times are empty (Likely overlap with Block #1)
+        Border #5: Tests lower edge case of requiredNumber.
 
 Explanation of the tests:
     * Block #1: Tests if the function returns correctly (-1) if all hours are filled with the required number of employees
     * Block #2: Tests if the function returns the hour that is not filled with the required number of employees
+
+Found Bugs:
+* border-case #4 (workingemployees empty)
+    * expected: 0, got: 2, doesnt return the closest hour correctly
