@@ -17,10 +17,10 @@ Block #3
 
 Border Cases:
 
-starttime = endtime
-workingemployes = full
-nemployes = full
-nemployes = 0
+          # starttime = endtime
+test__Schedule_StartTimeEqualsEndTime() # expected: 1
+          # nemployes = 0
+test_Schedule_noEmployees() #expected: True 
 
 Explanation of the tests:
     * Block #1: Tests if the function returns the same schedule if the starttime is greater than the endtime
@@ -57,7 +57,7 @@ Border case:
 
     workingEmployees full
         #currenttime = 0, size = 3, workingEmployees(0 ... 9) = 1, requiredNumber = 1
-        #test_Schedule_allHoursFilled, expected = -1
+        #test_Schedule_allHoursFilled, expected = -1   #This is the same test as in the prior function. 
 
     workingemployees empty
         #currenttime = 0, size = 3, workingemployees(0...2) = 0, requiredNumber = 1
