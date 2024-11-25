@@ -40,6 +40,7 @@ public class WorkScheduleTest {
         assertEquals(2, ws.readSchedule(0).workingEmployees.length);
     }
 
+    
     @Test
     public void test_Schedule_DiscardingWorkers()
     {
@@ -54,12 +55,13 @@ public class WorkScheduleTest {
         String[] workingWorkersAfterFunctionCall = ws.readSchedule(0).workingEmployees;
         assertEquals(1, workingWorkersAfterFunctionCall.length);
     }
+    
     @Test
     public void test_Schedule_StartTimeEqualsEndTime() {
         ws.setRequiredNumber(1, 5, 5);
         assertEquals(1, getRequiredWorkers(ws, 5));
     }
-
+    
     @Test
     public void test_Schedule_allHoursFilled()
     {
@@ -69,6 +71,15 @@ public class WorkScheduleTest {
             ws.addWorkingPeriod("worker"+i, i, i+1);
         }
         assertEquals(-1, ws.nextIncomplete(0));
+    }
+
+    @Test
+    public void test_Schedule_noEmployees() {
+        ws.setRequiredNumber(1, 0, 9);
+        ws.addWorkingPeriod("worker1", 0, 9);
+        ws.setRequiredNumber(0, 0, 9);
+        boolean ss = ws.workingEmployees(0, 9).length() == 0;
+        assertTrue(ss)
     }
     
     @Test
@@ -107,11 +118,12 @@ public class WorkScheduleTest {
     }
 
     @Test
-    public void test_Schedule_HighValues
+    public void test_Schedule_HighValues()
     {
         WorkSchedule work = new WorkSchedule(5);
         work.setRequiredNumber(1, 0, 4);
         assertEquals(4, work.nextIncomplete(4));
+    }
 
     @Test
     public void test_Schedule_workEmpty()
