@@ -93,9 +93,8 @@ public class WorkScheduleTest {
     public void test_Schedule_middleHour()
     {
         WorkSchedule work = new WorkSchedule(5);
-        work.setRequiredNumber(1, 0, 2);
+        work.setRequiredNumber(1, 0, 4);
         work.addWorkingPeriod("worker1", 0, 1);
-        work.addWorkingPeriod("worker2", 3, 4);
         assertEquals(2, work.nextIncomplete(0));
     }
     
@@ -106,6 +105,13 @@ public class WorkScheduleTest {
         work.setRequiredNumber(1, 0, 0);
         assertEquals(0, work.nextIncomplete(0));
     }
+
+    @Test
+    public void test_Schedule_HighValues
+    {
+        WorkSchedule work = new WorkSchedule(5);
+        work.setRequiredNumber(1, 0, 4);
+        assertEquals(4, work.nextIncomplete(4));
 
     @Test
     public void test_Schedule_workEmpty()
