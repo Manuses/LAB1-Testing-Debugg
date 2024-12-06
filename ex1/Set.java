@@ -60,6 +60,7 @@ public class Set {
     int vi,vj;
     for (int i = 0; i < a.size(); i++) {
       for (int j = 0; j < a.size(); j++) {
+        if(i == j) continue;
         vi = a.get(i);
         vj = a.get(j);
         if (!(member(f.applyAsInt(vi, vj)))) return false;
