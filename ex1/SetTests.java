@@ -125,9 +125,9 @@ public class SetTests {
     @Test
     void test_distinctClosed_false_subtraction()
     {
-        set.insert(1);
-        set.insert(2);
-        set.insert(3);
+        set.insert(-1);
+        set.insert(-2);
+        set.insert(-3);
         assertFalse(set.distinctClosed((a, b) -> a - b));
     }
     @Test

@@ -6,7 +6,7 @@ public class DatesImprove {
         /* Precondition: month is between 1 and 12, inclusive */
         /* Postcondition: returns the number of days in the given month */
         public static int daysInMonth (int month) {
-            if ((month == 9) || (month == 7) || (month == 11) || (month == 4)){
+            if ((month == 9) || (month == 6) || (month == 11) || (month == 4)){
                 return 30;
             } else if (month == 2) {
                 return 28;
