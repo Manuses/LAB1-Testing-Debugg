@@ -63,7 +63,7 @@ public class Set {
         if(i == j) continue;
         vi = a.get(i);
         vj = a.get(j);
-        if (!(member(f.applyAsInt(vi, vj))) || vi == vj) return false;
+        if (!(member(f.applyAsInt(vi, vj))) || vi != vj) return false;
       }
     }
     return true;
